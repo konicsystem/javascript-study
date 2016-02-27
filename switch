@@ -1,0 +1,126 @@
+
+Using the switch Statement
+
+Let’s take a look at the switch statement in action. The following example illustrates a simple guessing
+game. Type the code and save it as ch3 _ example3.html.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Chapter 3, Example 3</title>
+</head>
+<body>
+<script>
+var secretNumber = prompt("Pick a number between 1 and 5:", "");
+secretNumber = parseInt(secretNumber, 10);
+switch (secretNumber) {
+
+case 1:
+document.write("Too low!");
+break;
+case 2:
+document.write("Too low!");
+break;
+case 3:
+document.write("You guessed the secret number!");
+break;
+case 4:
+document.write("Too high!");
+break;
+case 5:
+document.write("Too high!");
+break;
+default:
+document.write("You did not enter a number between 1 and 5.");
+break;
+}
+document.write("<br />Execution continues here");
+</script>
+</body>
+</html>
+Load this into your browser and enter, for example, the value 1 in the prompt box. You should then see
+something like what is shown in Figure 3-8.
+
+If, on the other hand, you enter the value 3, you should see a friendly message letting you know that
+you guessed the secret number correctly, as shown in Figure 3-9.
+First you declare the variable secretNumber and set it to the value entered by the user via the prompt
+box. Note that you use the parseInt() function to convert the string that is returned from prompt() to
+an integer value:
+var secretNumber = prompt("Pick a number between 1 and 5:", "");
+secretNumber = parseInt(secretNumber, 10);
+Next you create the start of the switch statement:
+switch (secretNumber) {
+The expression in parentheses is simply the variable secretNumber, and it’s this number that the case
+statements will be compared against.
+You specify the block of code encompassing the case statements using curly braces. Each case
+statement checks one of the numbers between 1 and 5, because this is what you have specified to the
+user that she should enter. The first simply outputs a message that the number she has entered is too low:
+case 1:
+document.write("Too low!");
+break;
+The second case statement, for the value 2, has the same message, so the code is not repeated here. The
+third case statement lets the user know that she has guessed correctly:
+case 3:
+document.write("You guessed the secret number!");
+break;
+Finally, the fourth and fifth case statements output a message that the number the user has entered is
+too high:
+case 4:
+document.write("Too high!");
+break;
+You do need to add a default case in this example, because the user might very well (despite the
+instructions) enter a number that is not between 1 and 5, or even perhaps a letter. In this case, you add
+a message to let the user know that there is a problem:
+default:
+document.write("You did not enter a number between 1 and 5.");
+break;
+A default statement is also very useful for picking up bugs—if you have coded some of the case
+statements incorrectly, you will pick that up very quickly if you see the default code being run when it
+shouldn’t be.
+Finally, you have added the closing brace indicating the end of the switch statement. After this you
+output a line to indicate where the execution continues:
+}
+document.write("<br />Execution continues here");
+Note that each case statement ends with a break statement. This is important to ensure that execution
+of the code moves to the line after the end of the switch statement. If you forget to include this, you
+could end up executing the code for each case following the case that matches.
+
+
+Executing the Same Code for Different Cases
+
+You may have spotted a problem with the switch statement in this example—you want to execute
+the same code if the user enters a 1 or a 2, and the same code for a 4 or a 5. However, to achieve
+this, you have had to repeat the code in each case. What you want is an easier way of getting
+JavaScript to execute the same code for different cases. Well, that’s easy! Simply change the code so
+that it looks like this:
+
+switch (secretNumber) {
+case 1:
+case 2:
+document.write("Too low!");
+break;
+case 3:
+document.write("You guessed the secret number!");
+break;
+case 4:
+case 5:
+document.write("Too high!");
+break;
+default:
+document.write("You did not enter a number between 1 and 5.");
+break;
+}
+
+If you load this into your browser and experiment with entering some different numbers, you should
+see that it behaves exactly like the previous code.
+Here, you are making use of the fact that if there is no break statement underneath the code for
+a certain case statement, execution will continue through each following case statement until a
+break statement or the end of the switch is reached. Think of it as a sort of free fall through the
+switch statement until you hit the break statement.
+If the case statement for the value 1 is matched, execution simply continues until the break
+statement under case 2, so effectively you can execute the same code for both cases. The same
+technique is used for the case statements with values 4 and 5.
+
+
+
+
+
